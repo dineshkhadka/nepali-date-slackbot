@@ -1,14 +1,15 @@
 var express = require('express');
 var app = express();
-// var url = require('url');
+var url = require('url');
 // var request = require('request');
 var adbs = require("ad-bs-converter");
 // var nepali = require('neptoeng');
 
 var bodyParser = require('body-parser');
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', (process.env.PORT || 9001));
 
 // app.get('/', function(req, res){
@@ -22,16 +23,25 @@ app.post('/dummy/', function(req, res){
 
 });
 
-app.get('/convert/adtobs/', function(req, res){
+app.post('/convert/adtobs/', function(req, res){
 
   // var year = req.param('year');
   // var month = req.param('month');
   // var day = req.param('day');
+  var parsed_url = url.format({
+    pathname: 'https://api.genius.com/search',
+    query: {
+      access_token: process.env.GENIUS_ACCESS,
+      q: req.body.text
+    }
+  });
 
+  // console.log(parsed_url)
 
   // var viewAdToBS = `${year}/${month}/${day}`;
 
   var viewAdToBS = req.body.text;
+  console.log(viewAdToBS)
   // var responseAB = adbs.bs2ad(viewAdToBS);
   var responseAB = adbs.ad2bs(viewAdToBS);
   var ne = responseAB.ne;
@@ -39,7 +49,6 @@ app.get('/convert/adtobs/', function(req, res){
   // res.send(req.query);
 
 });
-
 app.post('/convert/bstoad/', function(req, res){
 
   // var year = req.param('year');
@@ -48,7 +57,7 @@ app.post('/convert/bstoad/', function(req, res){
 
 
   // var viewAdToBS = `${year}/${month}/${day}`;
-  var viewAdToBS = req.body.text('text')
+  var viewAdToBS = req.body.text;
   var responseAB = adbs.bs2ad(viewAdToBS);
   // console.log(responseAB)
   // // var ne = responseAB.ne;
