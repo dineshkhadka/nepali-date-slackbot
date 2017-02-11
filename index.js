@@ -67,7 +67,7 @@ app.post('/today/bs/', function(req, res){
   var proRespone = `${ne.year}/${ne.month}/${ne.day}`;
   var jsonResponse = {
     "response_type": "in_channel",
-    "text": "Today's nepali date is",
+    "text": ":date: Today's nepali date is",
     "attachments": [
         {
             "text": proRespone
