@@ -19,11 +19,6 @@ app.set('port', (process.env.PORT || 9001));
 
 var regex =  /\d+\/\d+\/\d+/;
 
-app.post('/dummy/', function(req, res){
-  res.send(req.query);
-
-});
-
 app.post('/convert/adtobs/', function(req, res){
 
   // var year = req.param('year');
@@ -67,8 +62,9 @@ app.post('/convert/bstoad/', function(req, res){
 
 
   // var viewAdToBS = `${year}/${month}/${day}`;
+  var viewAdToBS = req.body.text;
   if (viewAdToBS.match(regex)){
-    var viewAdToBS = req.body.text;
+    // var viewAdToBS = req.body.text;
     var responseAB = adbs.bs2ad(viewAdToBS);
     var output = `${responseAB.year}/${responseAB.month}/${responseAB.day}`;
     // console.log(responseAB)
