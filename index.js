@@ -28,13 +28,6 @@ app.post('/convert/adtobs/', function(req, res){
   // var year = req.param('year');
   // var month = req.param('month');
   // var day = req.param('day');
-  var parsed_url = url.format({
-    pathname: 'https://api.genius.com/search',
-    query: {
-      access_token: process.env.GENIUS_ACCESS,
-      q: req.body.text
-    }
-  });
 
   // console.log(parsed_url)
 
@@ -44,7 +37,7 @@ app.post('/convert/adtobs/', function(req, res){
   console.log(viewAdToBS)
   // var responseAB = adbs.bs2ad(viewAdToBS);
   var responseAB = adbs.ad2bs(viewAdToBS);
-  var ne = responseAB.ne;
+  var ne = responseAB.en;
   res.send(`${ne.year}/${ne.month}/${ne.day}`);
   // res.send(req.query);
 
