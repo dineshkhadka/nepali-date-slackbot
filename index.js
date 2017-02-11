@@ -17,6 +17,7 @@ app.set('port', (process.env.PORT || 9001));
 // });
 
 
+var regex =  /\d+\/\d+\/\d+/;
 
 app.post('/dummy/', function(req, res){
   res.send(req.query);
@@ -34,11 +35,27 @@ app.post('/convert/adtobs/', function(req, res){
   // var viewAdToBS = `${year}/${month}/${day}`;
 
   var viewAdToBS = req.body.text;
-  console.log(viewAdToBS)
-  // var responseAB = adbs.bs2ad(viewAdToBS);
-  var responseAB = adbs.ad2bs(viewAdToBS);
-  var ne = responseAB.en;
-  res.send(`${ne.year}/${ne.month}/${ne.day}`);
+  if (viewAdToBS.match(regex)){
+
+    var responseAB = adbs.ad2bs(viewAdToBS);
+    var ne = responseAB.ne;
+    var output = `${ne.year}/${ne.month}/${ne.day}`;
+    var jsonResponse = {
+    "response_type": "ephemeral",
+    "text": ":date: The Date converted to AD is",
+    "attachments": [
+        {
+            "text": output
+        }
+    ]
+  };
+
+
+    res.json(jsonResponse);
+  }
+  else {
+    res.send(':warning: Please use YYYY/MM/DD')
+  }
   // res.send(req.query);
 
 });
@@ -50,12 +67,28 @@ app.post('/convert/bstoad/', function(req, res){
 
 
   // var viewAdToBS = `${year}/${month}/${day}`;
-  var viewAdToBS = req.body.text;
-  var responseAB = adbs.bs2ad(viewAdToBS);
-  // console.log(responseAB)
-  // // var ne = responseAB.ne;
-  // res.send(responseAB)
-  res.send(`${responseAB.year}/${responseAB.month}/${responseAB.day}`);
+  if (viewAdToBS.match(regex)){
+    var viewAdToBS = req.body.text;
+    var responseAB = adbs.bs2ad(viewAdToBS);
+    var output = `${responseAB.year}/${responseAB.month}/${responseAB.day}`;
+    // console.log(responseAB)
+    // // var ne = responseAB.ne;
+    // res.send(responseAB)
+    var jsonResponse = {
+    "response_type": "ephemeral",
+    "text": ":date: The Date converted to AD is",
+    "attachments": [
+        {
+            "text": output
+        }
+    ]
+  };
+    res.json(jsonResponse);
+  }
+  else {
+
+    res.send(':warning: Please use YYYY/MM/DD')
+  }
 
 });
 
@@ -68,7 +101,7 @@ app.post('/today/bs/', function(req, res){
   var ne = responseAB.ne;
   var proRespone = `${ne.year}/${ne.month}/${ne.day}`;
   var jsonResponse = {
-    "response_type": "in_channel",
+    "response_type": "ephemeral",
     "text": ":date: Today's nepali date is",
     "attachments": [
         {
