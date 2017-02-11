@@ -5,7 +5,7 @@ var app = express();
 var adbs = require("ad-bs-converter");
 // var nepali = require('neptoeng');
 
-// var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -31,7 +31,7 @@ app.get('/convert/adtobs/', function(req, res){
 
   // var viewAdToBS = `${year}/${month}/${day}`;
 
-  var viewAdToBS = req.query.text;
+  var viewAdToBS = req.body.text;
   // var responseAB = adbs.bs2ad(viewAdToBS);
   var responseAB = adbs.ad2bs(viewAdToBS);
   var ne = responseAB.ne;
@@ -48,7 +48,7 @@ app.post('/convert/bstoad/', function(req, res){
 
 
   // var viewAdToBS = `${year}/${month}/${day}`;
-  var viewAdToBS = req.param('text')
+  var viewAdToBS = req.body.text('text')
   var responseAB = adbs.bs2ad(viewAdToBS);
   // console.log(responseAB)
   // // var ne = responseAB.ne;
