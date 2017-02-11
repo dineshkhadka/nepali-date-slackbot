@@ -18,28 +18,32 @@ app.set('port', (process.env.PORT || 9001));
 
 
 
-app.get('/convert/adtobs/', function(req, res){
+app.post('/convert/adtobs/', function(req, res){
 
-  var year = req.param('year');
-  var month = req.param('month');
-  var day = req.param('day');
+  // var year = req.param('year');
+  // var month = req.param('month');
+  // var day = req.param('day');
 
 
-  var viewAdToBS = `${year}/${month}/${day}`;
+  // var viewAdToBS = `${year}/${month}/${day}`;
+  
+  var viewAdToBS = req.param('text')
+  // var responseAB = adbs.bs2ad(viewAdToBS);
   var responseAB = adbs.ad2bs(viewAdToBS);
   var ne = responseAB.ne;
   res.send(`${ne.year}/${ne.month}/${ne.day}`);
 
 });
 
-app.get('/convert/bstoad/', function(req, res){
+app.post('/convert/bstoad/', function(req, res){
 
-  var year = req.param('year');
-  var month = req.param('month');
-  var day = req.param('day');
+  // var year = req.param('year');
+  // var month = req.param('month');
+  // var day = req.param('day');
 
 
-  var viewAdToBS = `${year}/${month}/${day}`;
+  // var viewAdToBS = `${year}/${month}/${day}`;
+  var viewAdToBS = req.param('text')
   var responseAB = adbs.bs2ad(viewAdToBS);
   // console.log(responseAB)
   // // var ne = responseAB.ne;
