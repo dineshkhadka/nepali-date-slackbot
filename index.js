@@ -73,8 +73,8 @@ app.post('/today/bs/', function(req, res){
             "text": ${proRespone}
         }
     ]
-  }`
-  res.send(jsonResponse);
+  }`;
+  res.json(jsonResponse);
 
 
 });
