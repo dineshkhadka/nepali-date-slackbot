@@ -17,7 +17,7 @@ app.set('port', (process.env.PORT || 9001));
 
 
 
-app.post('dummy', function(req, res){
+app.post('/dummy/', function(req, res){
   res.send(req.query);
 
 });
