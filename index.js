@@ -22,7 +22,7 @@ app.post('/dummy/', function(req, res){
 
 });
 
-app.post('/convert/adtobs/', function(req, res){
+app.get('/convert/adtobs/', function(req, res){
 
   // var year = req.param('year');
   // var month = req.param('month');
@@ -59,12 +59,22 @@ app.post('/convert/bstoad/', function(req, res){
 
 
 
-app.post('/today/bs/', function(req, res){
+app.get('/today/bs/', function(req, res){
   var today = new Date();
   var todayView = `${today.getFullYear()}/${(today.getMonth()+1)}/${today.getDate()}`;
   var responseAB = adbs.ad2bs(todayView);
   var ne = responseAB.ne;
-  res.send(`${ne.year}/${ne.month}/${ne.day}`);
+  var proRespone = `${ne.year}/${ne.month}/${ne.day}`;
+  var jsonResponse = `{
+    "response_type": "in_channel",
+    "text": "Today's nepali date is",
+    "attachments": [
+        {
+            "text": ${proRespone}
+        }
+    ]
+  }`
+  res.json(jsonResponse);
 
 
 });
