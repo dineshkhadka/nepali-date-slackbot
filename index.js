@@ -59,7 +59,7 @@ app.post('/convert/bstoad/', function(req, res){
 
 
 
-app.get('/today/bs/', function(req, res){
+app.post('/today/bs/', function(req, res){
   var today = new Date();
   var todayView = `${today.getFullYear()}/${(today.getMonth()+1)}/${today.getDate()}`;
   var responseAB = adbs.ad2bs(todayView);
