@@ -65,15 +65,16 @@ app.post('/today/bs/', function(req, res){
   var responseAB = adbs.ad2bs(todayView);
   var ne = responseAB.ne;
   var proRespone = `${ne.year}/${ne.month}/${ne.day}`;
-  var jsonResponse = `{
+  var jsonResponse = {
     "response_type": "in_channel",
     "text": "Today's nepali date is",
     "attachments": [
         {
-            "text": ${proRespone}
+            "text": proRespone
         }
     ]
-  }`;
+  };
+  // jsonResponse = JSON.parse(jsonResponse);
   res.json(jsonResponse);
 
 
