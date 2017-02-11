@@ -26,12 +26,13 @@ app.post('/convert/adtobs/', function(req, res){
 
 
   // var viewAdToBS = `${year}/${month}/${day}`;
-  
+
   var viewAdToBS = req.param('text')
   // var responseAB = adbs.bs2ad(viewAdToBS);
   var responseAB = adbs.ad2bs(viewAdToBS);
   var ne = responseAB.ne;
-  res.send(`${ne.year}/${ne.month}/${ne.day}`);
+  // res.send(`${ne.year}/${ne.month}/${ne.day}`);
+  res.send(req.params);
 
 });
 
