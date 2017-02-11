@@ -74,7 +74,7 @@ app.post('/today/bs/', function(req, res){
         }
     ]
   }`
-  res.json(jsonResponse);
+  res.send(jsonResponse);
 
 
 });
