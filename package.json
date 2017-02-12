@@ -1,14 +1,13 @@
 {
   "name": "nepali-date",
   "version": "1.0.0",
-  "description": "_A Slackbot that searches genius.com_",
+  "description": "_A Slackbot that converts to and from nepali dates_",
   "main": "index.js",
   "dependencies": {
     "ad-bs-converter": "^0.4.0",
     "body-parser": "^1.14.2",
     "ejs": "2.3.3",
-    "express": "4.13.3",
-    "request": "^2.67.0"
+    "express": "4.13.3"
   },
   "devDependencies": {},
   "scripts": {
@@ -16,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mager/slack-genius.git"
+    "url": "git+https://github.com/dineshkhadka/nepali-date-slackbot"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mager/slack-genius/issues"
+    "url": "https://github.com/dineshkhadka/nepali-date-slackbot/issues"
   },
-  "homepage": "https://github.com/mager/slack-genius#readme"
+  "homepage": "https://github.com/dineshkhadka/nepali-date-slackbot"
 }
